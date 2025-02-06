@@ -8,16 +8,16 @@ import 'bridge_map.dart';
 import 'journey_mud.dart';
 import 'map1.dart';
 
-class WoodCutter extends StatefulWidget {
+class Example extends StatefulWidget {
   final List<DragPlayer> dragPlayerLists;
 
-  const WoodCutter({super.key, required this.dragPlayerLists});
+  const Example({super.key, required this.dragPlayerLists});
 
   @override
-  State<WoodCutter> createState() => _WoodCutterState();
+  State<Example> createState() => _ExampleState();
 }
 
-class _WoodCutterState extends State<WoodCutter> {
+class _ExampleState extends State<Example> {
   int dropCount1 = 0;
   int dropCount2 = 0;
   int dropCount3 = 0;
@@ -105,7 +105,7 @@ class _WoodCutterState extends State<WoodCutter> {
         body: Stack(
           children: [
             Image.asset(
-              "map/woodcutter.png",
+              "map/Example.png",
               width: screenSize.width,
               height: screenSize.height,
               fit: BoxFit.fill,
@@ -234,7 +234,7 @@ class _WoodCutterState extends State<WoodCutter> {
                 );
               },
             ),
-            ...woodCutterDragNpcLists.map(
+            ...ExampleDragNpcLists.map(
               (npc) {
                 return DragableNpc(
                   dragNpc: npc,
