@@ -88,6 +88,14 @@ class _SceneState extends State<Scene> {
               );
             }
           }
+          // Morning
+          if (event.logicalKey == LogicalKeyboardKey.numpad1) {}
+          // Day
+          if (event.logicalKey == LogicalKeyboardKey.numpad2) {}
+          // Noon
+          if (event.logicalKey == LogicalKeyboardKey.numpad3) {}
+          // Night
+          if (event.logicalKey == LogicalKeyboardKey.numpad4) {}
         }
       },
     );
