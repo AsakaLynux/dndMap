@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,10 +23,18 @@ class BattleMapGrass extends StatefulWidget {
 
 class _BattleMapGrassState extends State<BattleMapGrass> {
   int dropCount1 = 0;
-
   final Set<int> target1Users = {};
-
   Set<int> usersInAnyTargetSet = {};
+  List<DragMob> dragMobLists = [];
+  late List<DragPlayer> dragPlayerLists;
+  final FocusNode _focusNode = FocusNode();
+  int currentMapIndex = 0;
+  List<String> mapList = [
+    "new_map/Battle_Map_Grass_Morning.png",
+    "new_map/Battle_Map_Grass_Day.png",
+    "new_map/Battle_Map_Grass_Noon.png",
+    "new_map/Battle_Map_Grass_Night.png",
+  ];
 
   void updateDropTargets({
     required Rect draggableRect,
@@ -73,11 +82,6 @@ class _BattleMapGrassState extends State<BattleMapGrass> {
         : Align(alignment: Alignment.topCenter, child: SizedBox());
   }
 
-  List<DragMob> dragMobLists = [];
-
-  late List<DragPlayer> dragPlayerLists;
-  final FocusNode _focusNode = FocusNode();
-
   @override
   void initState() {
     dragPlayerLists = widget.dragPlayerLists.map((user) {
@@ -113,7 +117,7 @@ class _BattleMapGrassState extends State<BattleMapGrass> {
         body: Stack(
           children: [
             Image.asset(
-              "new_map/Battle_Map_Grass_Day.png",
+              mapList[currentMapIndex],
               width: screenSize.width,
               height: screenSize.height,
               fit: BoxFit.fill,
@@ -150,9 +154,35 @@ class _BattleMapGrassState extends State<BattleMapGrass> {
       ),
       onKeyEvent: (event) {
         if (event is KeyDownEvent) {
-          if (event.logicalKey == LogicalKeyboardKey.escape) {
-            Navigator.pop(context);
-          }
+          setState(() {
+            if (event.logicalKey == LogicalKeyboardKey.escape) {
+              Navigator.pop(context);
+            } else if (event.logicalKey == LogicalKeyboardKey.keyA) {
+              // Morning
+              currentMapIndex = 0;
+              if (kDebugMode) {
+                print("Morning Pressed: $currentMapIndex");
+              }
+            } else if (event.logicalKey == LogicalKeyboardKey.keyS) {
+              // Day
+              currentMapIndex = 1;
+              if (kDebugMode) {
+                print("Day Pressed: $currentMapIndex");
+              }
+            } else if (event.logicalKey == LogicalKeyboardKey.keyD) {
+              // Noon
+              currentMapIndex = 2;
+              if (kDebugMode) {
+                print("Noon Pressed: $currentMapIndex");
+              }
+            } else if (event.logicalKey == LogicalKeyboardKey.keyF) {
+              // Night
+              currentMapIndex = 3;
+              if (kDebugMode) {
+                print("Night Pressed: $currentMapIndex");
+              }
+            }
+          });
         }
       },
     );

@@ -26,6 +26,7 @@ class _MapTemplateState extends State<MapTemplate> {
   List<Set<int>> targetUser = [];
   Set<int> usersInAnyTargetSet = {};
   final FocusNode _focusNode = FocusNode();
+  int currentMapIndex = 0;
   String mapUsed = "";
 
   void updateDropTargets({
@@ -102,11 +103,40 @@ class _MapTemplateState extends State<MapTemplate> {
     });
   }
 
+  void handleKeyPress(LogicalKeyboardKey key) {
+    setState(() {
+      if (key == LogicalKeyboardKey.keyA) {
+        // Morning
+        currentMapIndex = 0;
+        if (kDebugMode) {
+          print("Morning Pressed: $currentMapIndex");
+        }
+      } else if (key == LogicalKeyboardKey.keyS) {
+        // Day
+        currentMapIndex = 1;
+        if (kDebugMode) {
+          print("Day Pressed: $currentMapIndex");
+        }
+      } else if (key == LogicalKeyboardKey.keyD) {
+        // Noon
+        currentMapIndex = 2;
+        if (kDebugMode) {
+          print("Noon Pressed: $currentMapIndex");
+        }
+      } else if (key == LogicalKeyboardKey.keyF) {
+        // Night
+        currentMapIndex = 3;
+        if (kDebugMode) {
+          print("Night Pressed: $currentMapIndex");
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     resetMap(widget.dndMapModel);
 
-    mapUsed = widget.dndMapModel.map[0];
     _focusNode.requestFocus();
     super.initState();
   }
@@ -128,28 +158,13 @@ class _MapTemplateState extends State<MapTemplate> {
           autofocus: true,
           onKeyEvent: (event) {
             if (event is KeyDownEvent) {
-              // Morning
-              if (event.logicalKey == LogicalKeyboardKey.keyA) {
-                mapUsed = widget.dndMapModel.map[0];
-              }
-              // Day
-              if (event.logicalKey == LogicalKeyboardKey.keyS) {
-                mapUsed = widget.dndMapModel.map[1];
-              }
-              // Noon
-              if (event.logicalKey == LogicalKeyboardKey.keyD) {
-                mapUsed = widget.dndMapModel.map[2];
-              }
-              // Night
-              if (event.logicalKey == LogicalKeyboardKey.keyV) {
-                mapUsed = widget.dndMapModel.map[3];
-              }
+              handleKeyPress(event.logicalKey);
             }
           },
           child: Stack(
             children: [
               Image.asset(
-                mapUsed,
+                widget.dndMapModel.map[currentMapIndex],
                 width: screenSize.width,
                 height: screenSize.height,
                 fit: BoxFit.fill,
@@ -245,10 +260,10 @@ class _MapTemplateState extends State<MapTemplate> {
                     onPositionUpdate: (newPosition) {
                       setState(() {
                         npc.position = newPosition;
-                        if (kDebugMode) {
-                          print(
-                              "${npc.npcName} dx: ${npc.position.dx}, Y: ${npc.position.dy}");
-                        }
+                        // if (kDebugMode) {
+                        //   print(
+                        //       "${npc.npcName} dx: ${npc.position.dx}, Y: ${npc.position.dy}");
+                        // }
                       });
                     },
                   );
