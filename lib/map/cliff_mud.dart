@@ -19,8 +19,13 @@ class _CliffMudState extends State<CliffMud> {
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
-        name: "Cliff mud",
-        map: "map/cliff_mud.png",
+        name: "Cliff",
+        map: [
+          "new_map/Cliff_Morning.png",
+          "new_map/Cliff_Day.png",
+          "new_map/Cliff_Noon.png",
+          "new_map/Cliff_Night.png",
+        ],
         dragPlayer: dragPlayerLists,
         dragTargetArea: cliffMudTargetAreaLists,
         dragNpc: cliffMudDragNpcLists,

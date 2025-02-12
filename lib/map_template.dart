@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'main.dart';
 import 'model/drag.dart';
@@ -24,6 +25,8 @@ class _MapTemplateState extends State<MapTemplate> {
   List<int> dropCount = [];
   List<Set<int>> targetUser = [];
   Set<int> usersInAnyTargetSet = {};
+  final FocusNode _focusNode = FocusNode();
+  String mapUsed = "";
 
   void updateDropTargets({
     required Rect draggableRect,
@@ -65,17 +68,14 @@ class _MapTemplateState extends State<MapTemplate> {
 
   Widget userCount(int dropCount) {
     return dropCount != 0
-        ? Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              margin: const EdgeInsets.only(right: 10),
-              child: Text(
-                "Player $dropCount / ${dragPlayerLists.length}",
-                style: TextStyle(color: Colors.white, fontSize: 29),
-              ),
+        ? Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: Text(
+              "Player $dropCount / ${dragPlayerLists.length}",
+              style: TextStyle(color: Colors.white, fontSize: 29),
             ),
           )
-        : Align(alignment: Alignment.topCenter, child: SizedBox());
+        : SizedBox();
   }
 
   void resetMap(DndMap newMap) {
@@ -105,10 +105,16 @@ class _MapTemplateState extends State<MapTemplate> {
   @override
   void initState() {
     resetMap(widget.dndMapModel);
-    if (kDebugMode) {
-      print(widget.dndMapModel.name);
-    }
+
+    mapUsed = widget.dndMapModel.map[0];
+    _focusNode.requestFocus();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -117,107 +123,139 @@ class _MapTemplateState extends State<MapTemplate> {
 
     Widget map() {
       return Scaffold(
-        body: Stack(
-          children: [
-            Image.asset(
-              widget.dndMapModel.map,
-              width: screenSize.width,
-              height: screenSize.height,
-              fit: BoxFit.fill,
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...dropCount.map((e) => userCount(e)),
-                ],
+        body: KeyboardListener(
+          focusNode: _focusNode,
+          autofocus: true,
+          onKeyEvent: (event) {
+            if (event is KeyDownEvent) {
+              // Morning
+              if (event.logicalKey == LogicalKeyboardKey.keyA) {
+                mapUsed = widget.dndMapModel.map[0];
+              }
+              // Day
+              if (event.logicalKey == LogicalKeyboardKey.keyS) {
+                mapUsed = widget.dndMapModel.map[1];
+              }
+              // Noon
+              if (event.logicalKey == LogicalKeyboardKey.keyD) {
+                mapUsed = widget.dndMapModel.map[2];
+              }
+              // Night
+              if (event.logicalKey == LogicalKeyboardKey.keyV) {
+                mapUsed = widget.dndMapModel.map[3];
+              }
+            }
+          },
+          child: Stack(
+            children: [
+              Image.asset(
+                mapUsed,
+                width: screenSize.width,
+                height: screenSize.height,
+                fit: BoxFit.fill,
               ),
-            ),
-            ...widget.dndMapModel.dragTargetArea.map(
-              (e) {
-                return Positioned(
-                  left: e[0],
-                  top: e[1],
-                  child: DragTargetArea(
-                    width: e[2],
-                    height: e[3],
-                  ),
-                );
-              },
-            ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  widget.dndMapModel.name,
+                  style: TextStyle(color: Colors.white, fontSize: 29),
+                ),
+              ),
 
-            // Draggable users
-            ...widget.dndMapModel.dragPlayer.map(
-              (user) {
-                return DragablePayer(
-                  dragPlayer: user,
-                  onPositionUpdate: (newPosition) {
-                    setState(() {
-                      if (kDebugMode) {
-                        print(
-                            "${user.name} dx: ${user.position.dx}, Y: ${user.position.dy}");
-                      }
-                      user.position = newPosition;
+              Align(
+                alignment: Alignment.topCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ...dropCount.map((e) => userCount(e)),
+                  ],
+                ),
+              ),
+              ...widget.dndMapModel.dragTargetArea.map(
+                (e) {
+                  return Positioned(
+                    left: e[0],
+                    top: e[1],
+                    child: DragTargetArea(
+                      width: e[2],
+                      height: e[3],
+                    ),
+                  );
+                },
+              ),
 
-                      final userRect = Rect.fromLTWH(
-                        user.position.dx,
-                        user.position.dy,
-                        80,
-                        80,
-                      );
+              // Draggable users
+              ...widget.dndMapModel.dragPlayer.map(
+                (user) {
+                  return DragablePayer(
+                    dragPlayer: user,
+                    onPositionUpdate: (newPosition) {
+                      setState(() {
+                        user.position = newPosition;
 
-                      List<DragTargetData> dragTargets = [];
+                        final userRect = Rect.fromLTWH(
+                          user.position.dx,
+                          user.position.dy,
+                          80,
+                          80,
+                        );
+
+                        List<DragTargetData> dragTargets = [];
+                        for (int i = 0;
+                            i < widget.dndMapModel.dragTargetArea.length;
+                            i++) {
+                          dragTargets.add(DragTargetData(
+                            targetRect: Rect.fromLTWH(
+                              widget.dndMapModel.dragTargetArea[i][0],
+                              widget.dndMapModel.dragTargetArea[i][1],
+                              widget.dndMapModel.dragTargetArea[i][2],
+                              widget.dndMapModel.dragTargetArea[i][3],
+                            ),
+                            usersInTarget: targetUser[i],
+                            updateDropCount: (change) =>
+                                setState(() => dropCount[i] += change),
+                          ));
+                        }
+                        updateDropTargets(
+                          draggableRect: userRect,
+                          dragTargets: dragTargets,
+                          usersInTarget: usersInAnyTargetSet,
+                          userId: user.id,
+                          updateDropCount: (change) {},
+                        );
+                      });
+
                       for (int i = 0;
                           i < widget.dndMapModel.dragTargetArea.length;
                           i++) {
-                        dragTargets.add(DragTargetData(
-                          targetRect: Rect.fromLTWH(
-                            widget.dndMapModel.dragTargetArea[i][0],
-                            widget.dndMapModel.dragTargetArea[i][1],
-                            widget.dndMapModel.dragTargetArea[i][2],
-                            widget.dndMapModel.dragTargetArea[i][3],
-                          ),
-                          usersInTarget: targetUser[i],
-                          updateDropCount: (change) =>
-                              setState(() => dropCount[i] += change),
-                        ));
+                        navigatorMap(
+                            dropCount[i],
+                            (context) =>
+                                widget.dndMapModel.dragTargetDestination[i]);
                       }
-                      updateDropTargets(
-                        draggableRect: userRect,
-                        dragTargets: dragTargets,
-                        usersInTarget: usersInAnyTargetSet,
-                        userId: user.id,
-                        updateDropCount: (change) {},
-                      );
-                    });
+                    },
+                  );
+                },
+              ),
 
-                    for (int i = 0;
-                        i < widget.dndMapModel.dragTargetArea.length;
-                        i++) {
-                      navigatorMap(
-                          dropCount[i],
-                          (context) =>
-                              widget.dndMapModel.dragTargetDestination[i]);
-                    }
-                  },
-                );
-              },
-            ),
-
-            ...widget.dndMapModel.dragNpc.map(
-              (npc) {
-                return DragableNpc(
-                  dragNpc: npc,
-                  onPositionUpdate: (newPosition) {
-                    setState(() {
-                      npc.position = newPosition;
-                    });
-                  },
-                );
-              },
-            ),
-          ],
+              ...widget.dndMapModel.dragNpc.map(
+                (npc) {
+                  return DragableNpc(
+                    dragNpc: npc,
+                    onPositionUpdate: (newPosition) {
+                      setState(() {
+                        npc.position = newPosition;
+                        if (kDebugMode) {
+                          print(
+                              "${npc.npcName} dx: ${npc.position.dx}, Y: ${npc.position.dy}");
+                        }
+                      });
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       );
     }

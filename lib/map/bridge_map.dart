@@ -20,11 +20,16 @@ class _BridgeMapState extends State<BridgeMap> {
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
-        name: "Bridge Map",
+        name: "Bridge",
         dragPlayer: dragPlayerLists,
         dragTargetArea: bridgeMapTargetAreaLists,
         dragNpc: brigDragNpcLists,
-        map: "map/bridge_map.png",
+        map: [
+          "new_map/Bridge(broken)_Morning.png",
+          "new_map/Bridge(broken)_Day.png",
+          "new_map/Bridge(broken)_Noon.png",
+          "new_map/Bridge(broken)_Night.png",
+        ],
         dragTargetDestination: [
           WoodCutter(),
           AbadonedVillageMap(),

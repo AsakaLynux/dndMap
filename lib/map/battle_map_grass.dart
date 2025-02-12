@@ -113,7 +113,7 @@ class _BattleMapGrassState extends State<BattleMapGrass> {
         body: Stack(
           children: [
             Image.asset(
-              "map/battle_map_grass_grid.png",
+              "new_map/Battle_Map_Grass_Day.png",
               width: screenSize.width,
               height: screenSize.height,
               fit: BoxFit.fill,

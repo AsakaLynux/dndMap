@@ -19,10 +19,15 @@ class _JourneyMudState extends State<JourneyMud> {
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
-        name: "Journey Mud Map",
+        name: "Journey Map (JG,WO)",
         dragPlayer: dragPlayerLists,
         dragTargetArea: journeyMudTargetAreaLists,
-        map: "map/journey_mud.png",
+        map: [
+          "new_map/Journey_Map(JM,WO)_Morning.png",
+          "new_map/Journey_Map(JM,WO)_Day.png",
+          "new_map/Journey_Map(JM,WO)_Noon.png",
+          "new_map/Journey_Map(JM,WO)_Night.png",
+        ],
         dragTargetDestination: [
           JourneyGrass(),
           WoodCutter(),

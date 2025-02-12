@@ -19,8 +19,13 @@ class _Map1State extends State<Map1> {
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
-        name: "map1",
-        map: "map/map1.png",
+        name: "Journey Map(wo,av)",
+        map: [
+          "new_map/Journey_Map(wo,av)_Morning.png",
+          "new_map/Journey_Map(wo,av)_Day.png",
+          "new_map/Journey_Map(wo,av)_Noon.png",
+          "new_map/Journey_Map(wo,av)_Night.png",
+        ],
         dragPlayer: dragPlayerLists,
         dragTargetArea: map1TargetAreaLists,
         dragTargetDestination: [

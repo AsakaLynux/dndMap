@@ -25,11 +25,11 @@ List<DragPlayer> dragPlayerLists = [
       name: "Vito",
       position: Offset(0, 80),
       imageChar: "player/vito_char.png"),
-  DragPlayer(
-      id: 2,
-      name: "Yaru",
-      position: Offset(0, 160),
-      imageChar: "player/yaru_char.png"),
+  // DragPlayer(
+  //     id: 2,
+  //     name: "Yaru",
+  //     position: Offset(0, 160),
+  //     imageChar: "player/yaru_char.png"),
   // DragPlayer(
   //     id: 3,
   //     name: "Adhi",

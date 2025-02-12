@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../model/drag.dart';
-import '../main.dart';
-import '../model/drag_npc.dart';
-import '../model/drag_player.dart';
-import 'bridge_map.dart';
-import 'journey_mud.dart';
-import 'map1.dart';
+import 'model/drag.dart';
+import 'main.dart';
+import 'model/drag_player.dart';
 
 class Example extends StatefulWidget {
   final List<DragPlayer> dragPlayerLists;
@@ -218,34 +214,34 @@ class _ExampleState extends State<Example> {
                       );
                     });
 
-                    navigatorMap(dropCount3,
-                        (context) => Map1(dragPlayerLists: dragPlayerLists));
+                    // navigatorMap(dropCount3,
+                    //     (context) => Map1(dragPlayerLists: dragPlayerLists));
 
-                    navigatorMap(
-                        dropCount1,
-                        (context) =>
-                            JourneyMud(dragPlayerLists: dragPlayerLists));
+                    // navigatorMap(
+                    //     dropCount1,
+                    //     (context) =>
+                    //         JourneyMud(dragPlayerLists: dragPlayerLists));
 
-                    navigatorMap(
-                        dropCount2,
-                        (context) =>
-                            BridgeMap(dragPlayerLists: dragPlayerLists));
+                    // navigatorMap(
+                    //     dropCount2,
+                    //     (context) =>
+                    //         BridgeMap(dragPlayerLists: dragPlayerLists));
                   },
                 );
               },
             ),
-            ...ExampleDragNpcLists.map(
-              (npc) {
-                return DragableNpc(
-                  dragNpc: npc,
-                  onPositionUpdate: (newPosition) {
-                    setState(() {
-                      npc.position = newPosition;
-                    });
-                  },
-                );
-              },
-            )
+            // ...ExampleDragNpcLists.map(
+            //   (npc) {
+            //     return DragableNpc(
+            //       dragNpc: npc,
+            //       onPositionUpdate: (newPosition) {
+            //         setState(() {
+            //           npc.position = newPosition;
+            //         });
+            //       },
+            //     );
+            //   },
+            // )
           ],
         ),
       );

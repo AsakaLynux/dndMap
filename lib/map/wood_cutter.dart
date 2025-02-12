@@ -22,7 +22,12 @@ class _WoodCutterState extends State<WoodCutter> {
     return MapTemplate(
       dndMapModel: DndMap(
         name: "Wood Cutter",
-        map: "map/woodcutter.png",
+        map: [
+          "new_map/Wood_Cutter_Morning.png",
+          "new_map/Wood_Cutter_Day.png",
+          "new_map/Wood_Cutter_Noon.png",
+          "new_map/Wood_Cutter_Night.png",
+        ],
         dragPlayer: dragPlayerLists,
         dragNpc: woodCutterDragNpcLists,
         dragTargetArea: woodCutterTargetAreaLists,

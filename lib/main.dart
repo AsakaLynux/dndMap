@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'map/abadoned_village_map.dart';
 import 'map/battle_map_grass.dart';
 import 'map/battle_map_mud.dart';
-import 'map/bridge_map.dart';
-import 'map/cliff_mud.dart';
-import 'map/journey_grass.dart';
-import 'map/journey_mud.dart';
-import 'map/map1.dart';
 import 'map/wood_cutter.dart';
-import 'map_template.dart';
 import 'model/drag_player.dart';
 
 void main() {
@@ -88,14 +81,6 @@ class _SceneState extends State<Scene> {
               );
             }
           }
-          // Morning
-          if (event.logicalKey == LogicalKeyboardKey.numpad1) {}
-          // Day
-          if (event.logicalKey == LogicalKeyboardKey.numpad2) {}
-          // Noon
-          if (event.logicalKey == LogicalKeyboardKey.numpad3) {}
-          // Night
-          if (event.logicalKey == LogicalKeyboardKey.numpad4) {}
         }
       },
     );

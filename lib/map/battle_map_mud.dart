@@ -103,7 +103,7 @@ class _BattleMapMudState extends State<BattleMapMud> {
         body: Stack(
           children: [
             Image.asset(
-              "map/battle_map_mud_grid.png",
+              "new_map/Battle_Map_Mud_Day.png",
               width: screenSize.width,
               height: screenSize.height,
               fit: BoxFit.fill,
