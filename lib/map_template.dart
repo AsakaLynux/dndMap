@@ -8,13 +8,23 @@ import 'model/map.dart';
 
 class MapTemplate extends StatefulWidget {
   final DndMap dndMapModel;
-  const MapTemplate({super.key, required this.dndMapModel});
+  final Map<int, Offset>? playerPositions;
+
+  const MapTemplate({
+    super.key,
+    required this.dndMapModel,
+    this.playerPositions,
+  });
 
   @override
   State<MapTemplate> createState() => _MapTemplateState();
 }
 
 class _MapTemplateState extends State<MapTemplate> {
+  List<int> dropCount = [];
+  List<Set<int>> targetUser = [];
+  Set<int> usersInAnyTargetSet = {};
+
   void updateDropTargets({
     required Rect draggableRect,
     required List<DragTargetData> dragTargets,
@@ -48,9 +58,7 @@ class _MapTemplateState extends State<MapTemplate> {
     if (dropCount == dragPlayerLists.length) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: builder,
-        ),
+        MaterialPageRoute(builder: builder),
       );
     }
   }
@@ -70,32 +78,42 @@ class _MapTemplateState extends State<MapTemplate> {
         : Align(alignment: Alignment.topCenter, child: SizedBox());
   }
 
-  @override
-  void initState() {
-    dragPlayerLists = widget.dndMapModel.dragPlayer
-      ..map((user) {
+  void resetMap(DndMap newMap) {
+    setState(() {
+      dragPlayerLists = newMap.dragPlayer.map((user) {
+        final position = widget.playerPositions != null &&
+                widget.playerPositions!.containsKey(user.id)
+            ? widget.playerPositions![user.id]
+            : user.defaultPosition;
         return DragPlayer(
           id: user.id,
           name: user.name,
-          position: user.defaultPosition,
+          position: position!,
           imageChar: user.imageChar,
         );
       }).toList();
 
+      dropCount.clear();
+      targetUser.clear();
+      for (int i = 0; i < newMap.dragTargetArea.length; i++) {
+        dropCount.add(0);
+        targetUser.add({});
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    resetMap(widget.dndMapModel);
+    if (kDebugMode) {
+      print(widget.dndMapModel.name);
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    List<int> dropCount = [];
-    List<Set<int>> targetUser = [];
-    Set<int> usersInAnyTargetSet = {};
-
-    for (int i = 0; i < widget.dndMapModel.dragTargetArea.length; i++) {
-      dropCount.add(0);
-      targetUser.add({});
-    }
 
     Widget map() {
       return Scaffold(
@@ -112,12 +130,7 @@ class _MapTemplateState extends State<MapTemplate> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...dropCount.map((e) {
-                    // if (kDebugMode) {
-                    //   print(e);
-                    // }
-                    return userCount(e);
-                  }),
+                  ...dropCount.map((e) => userCount(e)),
                 ],
               ),
             ),
@@ -141,6 +154,10 @@ class _MapTemplateState extends State<MapTemplate> {
                   dragPlayer: user,
                   onPositionUpdate: (newPosition) {
                     setState(() {
+                      if (kDebugMode) {
+                        print(
+                            "${user.name} dx: ${user.position.dx}, Y: ${user.position.dy}");
+                      }
                       user.position = newPosition;
 
                       final userRect = Rect.fromLTWH(
@@ -162,12 +179,8 @@ class _MapTemplateState extends State<MapTemplate> {
                             widget.dndMapModel.dragTargetArea[i][3],
                           ),
                           usersInTarget: targetUser[i],
-                          updateDropCount: (change) => setState(() {
-                            dropCount[i] += change;
-                            if (kDebugMode) {
-                              print("drop count $i: ${dropCount[i]}");
-                            }
-                          }),
+                          updateDropCount: (change) =>
+                              setState(() => dropCount[i] += change),
                         ));
                       }
                       updateDropTargets(
@@ -208,6 +221,11 @@ class _MapTemplateState extends State<MapTemplate> {
         ),
       );
     }
+
+    // if (kDebugMode) {
+    //   print("dropCount $dropCount");
+    //   print("targetUser $targetUser");
+    // }
 
     return Scene(widget: map());
   }

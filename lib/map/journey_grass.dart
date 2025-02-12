@@ -23,7 +23,7 @@ class _JourneyGrassState extends State<JourneyGrass> {
         dragTargetArea: journeyGrassTargerAreaLists,
         map: "map/journey_grass.png",
         dragTargetDestination: [
-          const SizedBox(),
+          JourneyGrass(),
           JourneyMud(),
         ],
       ),

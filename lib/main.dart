@@ -18,7 +18,6 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: WoodCutter(),
-      // WoodCutter(dragPlayerLists: dragPlayerLists),
     ),
   );
 }
