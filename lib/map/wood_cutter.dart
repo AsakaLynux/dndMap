@@ -6,8 +6,8 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'bridge_map.dart';
-import 'journey_mud.dart';
-import 'map1.dart';
+import 'journey_map_jgwo.dart';
+import 'journey_map_woav.dart';
 
 class WoodCutter extends StatefulWidget {
   const WoodCutter({super.key});
@@ -32,9 +32,9 @@ class _WoodCutterState extends State<WoodCutter> {
         dragNpc: woodCutterDragNpcLists,
         dragTargetArea: woodCutterTargetAreaLists,
         dragTargetDestination: [
-          JourneyMud(),
+          JourneyMapJgwo(),
           BridgeMap(),
-          Map1(),
+          JourneyMapWoav(),
         ],
       ),
     );

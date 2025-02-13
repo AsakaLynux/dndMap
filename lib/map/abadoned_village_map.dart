@@ -5,8 +5,8 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'bridge_map.dart';
-import 'cliff_mud.dart';
-import 'map1.dart';
+import 'cliff_map.dart';
+import 'journey_map_woav.dart';
 
 class AbadonedVillageMap extends StatefulWidget {
   const AbadonedVillageMap({super.key});
@@ -30,9 +30,9 @@ class _AbadonedVillageMapState extends State<AbadonedVillageMap> {
           "new_map/Abadoned_Village_Night.png",
         ],
         dragTargetDestination: [
-          Map1(),
+          JourneyMapWoav(),
           BridgeMap(),
-          CliffMud(),
+          CliffMap(),
         ],
       ),
     );

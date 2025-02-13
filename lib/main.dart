@@ -1,5 +1,5 @@
-import 'package:dnd/map/journey_mud.dart';
-import 'package:dnd/map/map1.dart';
+import 'package:dnd/map/journey_map_jgwo.dart';
+import 'package:dnd/map/journey_map_woav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,7 +7,7 @@ import 'map/abadoned_village_map.dart';
 import 'map/battle_map_grass.dart';
 import 'map/battle_map_mud.dart';
 import 'map/bridge_map.dart';
-import 'map/cliff_mud.dart';
+import 'map/cliff_map.dart';
 import 'map/wood_cutter.dart';
 import 'model/drag_player.dart';
 
@@ -15,7 +15,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: JourneyMud(),
+      home: JourneyMapJgwo(),
     ),
   );
 }

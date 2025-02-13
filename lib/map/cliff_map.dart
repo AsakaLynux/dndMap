@@ -7,14 +7,14 @@ import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'abadoned_village_map.dart';
 
-class CliffMud extends StatefulWidget {
-  const CliffMud({super.key});
+class CliffMap extends StatefulWidget {
+  const CliffMap({super.key});
 
   @override
-  State<CliffMud> createState() => _CliffMudState();
+  State<CliffMap> createState() => _CliffMapState();
 }
 
-class _CliffMudState extends State<CliffMud> {
+class _CliffMapState extends State<CliffMap> {
   @override
   Widget build(BuildContext context) {
     return MapTemplate(
@@ -27,8 +27,8 @@ class _CliffMudState extends State<CliffMud> {
           "new_map/Cliff_Night.png",
         ],
         dragPlayer: dragPlayerLists,
-        dragTargetArea: cliffMudTargetAreaLists,
-        dragNpc: cliffMudDragNpcLists,
+        dragTargetArea: cliffMapTargetAreaLists,
+        dragNpc: cliffMapDragNpcLists,
         dragTargetDestination: [AbadonedVillageMap()],
       ),
     );

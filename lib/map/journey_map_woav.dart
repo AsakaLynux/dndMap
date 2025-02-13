@@ -7,19 +7,19 @@ import '../model/map.dart';
 import 'abadoned_village_map.dart';
 import 'wood_cutter.dart';
 
-class Map1 extends StatefulWidget {
-  const Map1({super.key});
+class JourneyMapWoav extends StatefulWidget {
+  const JourneyMapWoav({super.key});
 
   @override
-  State<Map1> createState() => _Map1State();
+  State<JourneyMapWoav> createState() => _JourneyMapWoavState();
 }
 
-class _Map1State extends State<Map1> {
+class _JourneyMapWoavState extends State<JourneyMapWoav> {
   @override
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
-        name: "Journey Map(wo,av)",
+        name: "Journey Map(WO,AV)",
         map: [
           "new_map/Journey_Map(WO,AV)_Morning.png",
           "new_map/Journey_Map(WO,AV)_Day.png",
@@ -27,11 +27,11 @@ class _Map1State extends State<Map1> {
           "new_map/Journey_Map(WO,AV)_Night.png",
         ],
         dragPlayer: dragPlayerLists,
-        dragTargetArea: map1TargetAreaLists,
+        dragTargetArea: journeyMapWoavTargetAreaLists,
         dragTargetDestination: [
           WoodCutter(),
           AbadonedVillageMap(),
-          Map1(),
+          JourneyMapWoav(),
         ],
       ),
     );

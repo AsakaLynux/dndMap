@@ -55,7 +55,7 @@ List<DragNpc> woodCutterDragNpcLists = [
   )
 ];
 
-List<DragNpc> cliffMudDragNpcLists = [
+List<DragNpc> cliffMapDragNpcLists = [
   DragNpc(
     npcChar: "npc/helena_char.png",
     npcName: "Helena",

@@ -4,23 +4,23 @@ import '../map_template.dart';
 import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
-import 'journey_mud.dart';
+import 'journey_map_jgwo.dart';
 
-class JourneyGrass extends StatefulWidget {
-  const JourneyGrass({super.key});
+class JourneyMapRcjm extends StatefulWidget {
+  const JourneyMapRcjm({super.key});
 
   @override
-  State<JourneyGrass> createState() => _JourneyGrassState();
+  State<JourneyMapRcjm> createState() => _JourneyMapRcjmState();
 }
 
-class _JourneyGrassState extends State<JourneyGrass> {
+class _JourneyMapRcjmState extends State<JourneyMapRcjm> {
   @override
   Widget build(BuildContext context) {
     return MapTemplate(
       dndMapModel: DndMap(
         name: "JourneyMap (RC,JM)",
         dragPlayer: dragPlayerLists,
-        dragTargetArea: journeyGrassTargerAreaLists,
+        dragTargetArea: journeyMapRcjmTargerAreaLists,
         map: [
           "new_map/Journey_Map(RC,JM)_Morning.png",
           "new_map/Journey_Map(RC,JM)_Day.png",
@@ -28,8 +28,8 @@ class _JourneyGrassState extends State<JourneyGrass> {
           "new_map/Journey_Map(RC,JM)_Night.png",
         ],
         dragTargetDestination: [
-          JourneyGrass(),
-          JourneyMud(),
+          JourneyMapRcjm(),
+          JourneyMapJgwo(),
         ],
       ),
     );

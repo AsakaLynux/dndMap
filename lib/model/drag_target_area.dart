@@ -11,7 +11,7 @@ List<List<double>> woodCutterTargetAreaLists = [
   [width / 2 - 300, height - 100, 270, 100],
 ];
 
-List<List<double>> map1TargetAreaLists = [
+List<List<double>> journeyMapWoavTargetAreaLists = [
   [width / 3 - 170, 0, 450, 100],
   [width - 100, height / 2 - 100, 100, 300],
   [width / 5 - 50, height - 100, 450, 100]
@@ -23,7 +23,7 @@ List<List<double>> bridgeMapTargetAreaLists = [
   [width / 2 + 50, height - 100, 300, 100],
 ];
 
-List<List<double>> cliffMudTargetAreaLists = [
+List<List<double>> cliffMapTargetAreaLists = [
   [width / 2 - 120, 0, 380, 100]
 ];
 
@@ -33,12 +33,12 @@ List<List<double>> abadonedVillageMapTargetAreaLists = [
   [width / 2 - 170, height - 100, 400, 100],
 ];
 
-List<List<double>> journeyMudTargetAreaLists = [
+List<List<double>> journeyMapJgwoTargetAreaLists = [
   [0, height / 3, 100, 265],
   [width - 100, height / 2 - 125, 100, 215]
 ];
 
-List<List<double>> journeyGrassTargerAreaLists = [
+List<List<double>> journeyMapRcjmTargerAreaLists = [
   [0, height / 2 - 125, 100, 285],
   [width - 100, height / 2 - 100, 100, 215],
 ];
