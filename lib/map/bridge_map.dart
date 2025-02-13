@@ -32,6 +32,7 @@ class _BridgeMapState extends State<BridgeMap> {
         ],
         dragTargetDestination: [
           WoodCutter(),
+          BridgeMap(),
           AbadonedVillageMap(),
         ],
       ),

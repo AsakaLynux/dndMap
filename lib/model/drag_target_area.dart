@@ -6,38 +6,39 @@ double width = screenSize.width;
 double height = screenSize.height;
 
 List<List<double>> woodCutterTargetAreaLists = [
-  [0, height / 2, 100, 160],
-  [width - 100, height / 2 + 110, 100, 140],
-  [width / 2, height - 100, 430, 100],
+  [0, height / 2, 100, 210],
+  [width - 100, height / 2 + 60, 100, 160],
+  [width / 2 - 300, height - 100, 270, 100],
 ];
 
 List<List<double>> map1TargetAreaLists = [
-  [screenSize.width / 2 - 290, 0, 340, 100],
-  [screenSize.width - 100, screenSize.height / 2 - 145, 100, 265],
-  [screenSize.width / 5 + 50, screenSize.height - 100, 330, 100]
+  [width / 3 - 170, 0, 450, 100],
+  [width - 100, height / 2 - 100, 100, 300],
+  [width / 5 - 50, height - 100, 450, 100]
 ];
 
 List<List<double>> bridgeMapTargetAreaLists = [
-  [0, screenSize.height / 2 - 180, 100, 200],
-  [screenSize.width / 2, screenSize.height - 100, 200, 100]
+  [0, height / 3 - 50, 100, 200],
+  [width - 100, height / 3 - 50, 100, 200],
+  [width / 2 + 50, height - 100, 300, 100],
 ];
 
 List<List<double>> cliffMudTargetAreaLists = [
-  [screenSize.width / 2 - 220, 0, 340, 100]
+  [width / 2 - 120, 0, 380, 100]
 ];
 
 List<List<double>> abadonedVillageMapTargetAreaLists = [
-  [0, screenSize.height / 2 - 120, 100, 240],
-  [screenSize.width / 2 - 180, 0, 280, 100],
-  [screenSize.width / 2 - 180, screenSize.height - 100, 280, 100],
+  [0, height / 2 - 120, 100, 240],
+  [width / 2 - 170, 0, 400, 100],
+  [width / 2 - 170, height - 100, 400, 100],
 ];
 
 List<List<double>> journeyMudTargetAreaLists = [
-  [0, screenSize.height / 2 - 125, 100, 265],
-  [screenSize.width - 100, screenSize.height / 2 - 125, 100, 265]
+  [0, height / 3, 100, 265],
+  [width - 100, height / 2 - 125, 100, 215]
 ];
 
 List<List<double>> journeyGrassTargerAreaLists = [
-  [0, screenSize.height / 2 - 125, 100, 285],
-  [screenSize.width - 100, screenSize.height / 2 - 125, 100, 285],
+  [0, height / 2 - 125, 100, 285],
+  [width - 100, height / 2 - 100, 100, 215],
 ];

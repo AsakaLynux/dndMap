@@ -31,7 +31,7 @@ class _Map1State extends State<Map1> {
         dragTargetDestination: [
           WoodCutter(),
           AbadonedVillageMap(),
-          const SizedBox(),
+          Map1(),
         ],
       ),
     );
