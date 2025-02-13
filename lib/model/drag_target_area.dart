@@ -5,7 +5,7 @@ Size screenSize =
 double width = screenSize.width;
 double height = screenSize.height;
 
-List<List<double>> woodCutterTargetAreaLists = [
+List<List<double>> woodCutterMapTargetAreaLists = [
   [0, height / 2, 100, 210],
   [width - 100, height / 2 + 60, 100, 160],
   [width / 2 - 300, height - 100, 270, 100],
@@ -41,4 +41,31 @@ List<List<double>> journeyMapJgwoTargetAreaLists = [
 List<List<double>> journeyMapRcjmTargerAreaLists = [
   [0, height / 2 - 125, 100, 285],
   [width - 100, height / 2 - 100, 100, 215],
+];
+
+List<List<double>> remenantCampMapTargetAreaLists = [
+  [0, height / 2 - 125, 100, 285],
+  [width - 100, height / 2 - 100, 100, 215],
+];
+
+List<List<double>> jungleMapTargetAreaList = [
+  [width - 100, height / 2 - 100, 100, 215],
+];
+
+List<List<double>> nemeTownMapTargetAreaLists = [
+  [0, height / 2 - 125, 100, 285],
+  [width - 100, height / 2 - 100, 100, 215],
+];
+
+List<List<double>> forestMapTargetAreaList = [
+  [0, height / 2 - 125, 100, 285],
+];
+
+List<List<double>> ancientRuinMapTargetAreaLists = [
+  [width / 2 - 150, 0, 200, 100],
+  [width - 360, height - 80, 200, 50],
+];
+
+List<List<double>> ancientRuinBasementMapTargetAreaList = [
+  [40, 20, 200, 50],
 ];

@@ -5,7 +5,7 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'journey_map_rcjm.dart';
-import 'wood_cutter.dart';
+import 'wood_cutter_map.dart';
 
 class JourneyMapJgwo extends StatefulWidget {
   const JourneyMapJgwo({super.key});
@@ -30,7 +30,7 @@ class _JourneyMapJgwoState extends State<JourneyMapJgwo> {
         ],
         dragTargetDestination: [
           JourneyMapRcjm(),
-          WoodCutter(),
+          WoodCutterMap(),
         ],
       ),
     );

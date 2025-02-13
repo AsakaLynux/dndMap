@@ -5,6 +5,7 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'journey_map_jgwo.dart';
+import 'remenant_camp_map.dart';
 
 class JourneyMapRcjm extends StatefulWidget {
   const JourneyMapRcjm({super.key});
@@ -28,7 +29,7 @@ class _JourneyMapRcjmState extends State<JourneyMapRcjm> {
           "new_map/Journey_Map(RC,JM)_Night.png",
         ],
         dragTargetDestination: [
-          JourneyMapRcjm(),
+          RemenantCampMap(),
           JourneyMapJgwo(),
         ],
       ),

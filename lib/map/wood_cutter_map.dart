@@ -9,14 +9,14 @@ import 'bridge_map.dart';
 import 'journey_map_jgwo.dart';
 import 'journey_map_woav.dart';
 
-class WoodCutter extends StatefulWidget {
-  const WoodCutter({super.key});
+class WoodCutterMap extends StatefulWidget {
+  const WoodCutterMap({super.key});
 
   @override
-  State<WoodCutter> createState() => _WoodCutterState();
+  State<WoodCutterMap> createState() => _WoodCutterMapState();
 }
 
-class _WoodCutterState extends State<WoodCutter> {
+class _WoodCutterMapState extends State<WoodCutterMap> {
   @override
   Widget build(BuildContext context) {
     return MapTemplate(
@@ -30,7 +30,7 @@ class _WoodCutterState extends State<WoodCutter> {
         ],
         dragPlayer: dragPlayerLists,
         dragNpc: woodCutterDragNpcLists,
-        dragTargetArea: woodCutterTargetAreaLists,
+        dragTargetArea: woodCutterMapTargetAreaLists,
         dragTargetDestination: [
           JourneyMapJgwo(),
           BridgeMap(),

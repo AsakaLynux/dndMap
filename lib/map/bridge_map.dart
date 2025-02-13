@@ -6,7 +6,8 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'abadoned_village_map.dart';
-import 'wood_cutter.dart';
+import 'neme_town_map.dart';
+import 'wood_cutter_map.dart';
 
 class BridgeMap extends StatefulWidget {
   const BridgeMap({super.key});
@@ -31,8 +32,8 @@ class _BridgeMapState extends State<BridgeMap> {
           "new_map/Bridge(broken)_Night.png",
         ],
         dragTargetDestination: [
-          WoodCutter(),
-          BridgeMap(),
+          WoodCutterMap(),
+          NemeTownMap(),
           AbadonedVillageMap(),
         ],
       ),

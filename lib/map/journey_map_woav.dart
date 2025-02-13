@@ -5,7 +5,8 @@ import '../model/drag_player.dart';
 import '../model/drag_target_area.dart';
 import '../model/map.dart';
 import 'abadoned_village_map.dart';
-import 'wood_cutter.dart';
+import 'ancient_ruin_map.dart';
+import 'wood_cutter_map.dart';
 
 class JourneyMapWoav extends StatefulWidget {
   const JourneyMapWoav({super.key});
@@ -29,9 +30,9 @@ class _JourneyMapWoavState extends State<JourneyMapWoav> {
         dragPlayer: dragPlayerLists,
         dragTargetArea: journeyMapWoavTargetAreaLists,
         dragTargetDestination: [
-          WoodCutter(),
+          WoodCutterMap(),
           AbadonedVillageMap(),
-          JourneyMapWoav(),
+          AncientRuinMap(),
         ],
       ),
     );
