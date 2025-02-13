@@ -21,10 +21,10 @@ class _Map1State extends State<Map1> {
       dndMapModel: DndMap(
         name: "Journey Map(wo,av)",
         map: [
-          "new_map/Journey_Map(wo,av)_Morning.png",
-          "new_map/Journey_Map(wo,av)_Day.png",
-          "new_map/Journey_Map(wo,av)_Noon.png",
-          "new_map/Journey_Map(wo,av)_Night.png",
+          "new_map/Journey_Map(WO,AV)_Morning.png",
+          "new_map/Journey_Map(WO,AV)_Day.png",
+          "new_map/Journey_Map(WO,AV)_Noon.png",
+          "new_map/Journey_Map(WO,AV)_Night.png",
         ],
         dragPlayer: dragPlayerLists,
         dragTargetArea: map1TargetAreaLists,
