@@ -1,16 +1,19 @@
-# dnd
+# DnD Map
 
-A new Flutter project.
+A Flutter project support playing dnd with friends.
 
-## Getting Started
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Demo](#demo)
 
-This project is a starting point for a Flutter application.
+## General info
+This project is simple map project for support DnD with friends, this is a map that player can use to explore the story, player can drag the player token and move to targer area to move to another map.
+	
+## Technologies
+Project is created with:
+* Flutter: 3.27.1
 
-A few resources to get you started if this is your first Flutter project:
+## Demo
+https://github.com/user-attachments/assets/d650370e-5c59-4334-b1da-caaaac0156be
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
